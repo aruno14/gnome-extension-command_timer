@@ -1,8 +1,8 @@
 {
   "name": "Command Timer",
-  "description": "Execute a command with a timer",
-  "uuid": "commandtimer@alpaga.ovh",
+  "description": "Execute a command after a timer",
+  "uuid": "commandtimer@alpaga",
   "shell-version": [
-    "47"
+    "46"
   ]
 }
