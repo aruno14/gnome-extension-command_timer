@@ -2,6 +2,7 @@
   "name": "Command Timer",
   "description": "Execute a command after a timer",
   "uuid": "commandtimer@alpaga",
+  "url": "https://github.com/aruno14/gnome-extension-command_timer",
   "shell-version": [
     "46"
   ]

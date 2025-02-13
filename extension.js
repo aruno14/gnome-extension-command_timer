@@ -80,7 +80,9 @@ class CommandTimer extends PanelMenu.Button {
                     } catch (error) {
                         Main.notify('Command Timer', `Failed to execute "${command}": ${error.message}`);
                     }
+                    // Remove the command from the pending list and clean up the timeout
                     this.pendingCommands = this.pendingCommands.filter(cmd => cmd.command !== command);
+                    GLib.source_remove(countdownId);
                     this.updatePendingCommandsList();
                     return false;
                 }
@@ -112,6 +114,16 @@ class CommandTimer extends PanelMenu.Button {
             this.pendingCommandsList.add_child(cmdItem);
         });
     }
+
+    destroy() {
+        // Clean up all pending timeouts
+        this.pendingCommands.forEach(cmd => {
+            if (cmd.countdownId) {
+                GLib.source_remove(cmd.countdownId);
+            }
+        });
+        super.destroy();
+    }
 });
 
 export default class CommandTimerExtension extends Extension {
@@ -125,4 +137,3 @@ export default class CommandTimerExtension extends Extension {
         this._indicator = null;
     }
 }
-
